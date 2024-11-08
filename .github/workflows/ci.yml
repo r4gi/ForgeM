@@ -1,28 +1,28 @@
-name: CI Pipeline
+name: Node.js CI
 
 on:
   push:
     branches:
-      - main
+      - main  # mainブランチにプッシュされた場合に実行されます
   pull_request:
     branches:
-      - main
+      - main  # pull requestがmainに対して作成された場合に実行されます
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Ubuntu環境で実行
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3  # コードをチェックアウト
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # 使用するNode.jsのバージョン
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install  # 依存関係をインストール
 
-      - name: Run tests
-        run: npm test
+    - name: Run tests
+      run: npm test  # テストを実行
